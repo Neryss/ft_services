@@ -3,6 +3,7 @@ kubectl get configmap kube-proxy -n kube-system -o yaml | \
 sed -e "s/strictARP: false/strictARP: true/" | \
 kubectl apply -f - -n kube-system
 Kubectl apply -f ./srcs/metallb/metallb.yaml
+Kubectl apply -f ./srcs/metallb/namespace.yaml
 
 eval $(minikube docker-env)
 docker build ./srcs/nginx --rm -t my-nginx
