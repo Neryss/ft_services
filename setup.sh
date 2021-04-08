@@ -15,7 +15,7 @@ run_nginx()
 
 run_minikube()
 {
-	minikube start
+	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
 	kubectl get configmap kube-proxy -n kube-system -o yaml | \
 	sed -e "s/strictARP: false/strictARP: true/" | \
 	kubectl apply -f - -n kube-system
