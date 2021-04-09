@@ -1,4 +1,4 @@
-cp default /etc/nginx/sites-enabled/default
+cp default /etc/nginx/conf.d/default.conf
 cp wordpress-5.7.zip /var/www/html
 cd /var/www/html
 tar -xvf wordpress-5.7.zip
