@@ -12,7 +12,8 @@ spec:
         app: wordpress
     spec:
       containers:
-      - image: wordpress:latest
+      - image: my-wordpress:latest
+        imagePullPolicy: Never
         name: wordpress
         ports:
         - name: http

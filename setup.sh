@@ -14,7 +14,7 @@ run_nginx()
 
 run_wordpress()
 {
-	docker build ./srcs/wordpress --rm -t wordpress
+	docker build ./srcs/wordpress --rm -t my-wordpress
 	Kubectl apply -f ./srcs/wordpress/srcs/wordpress.yaml
 }
 
@@ -22,14 +22,12 @@ run_minikube()
 {
 	minikube delete --all
 	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
-	eval $(minikube docker-env)
-	kubectl get configmap kube-proxy -n kube-system -o yaml | \
-	sed -e "s/strictARP: false/strictARP: true/" | \
-	kubectl apply -f - -n kube-system
 }
 
 echo "Starting services"
 run_minikube
+eval $(minikube docker-env)
+minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
 echo "Setting up metallb..."
 run_metallb
 echo "Setting up nginx..."
