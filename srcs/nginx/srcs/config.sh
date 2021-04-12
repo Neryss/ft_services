@@ -1,4 +1,8 @@
-cp default /etc/nginx/sites-enabled/default
+cp default /etc/nginx/conf.d/default.conf
+cd /var/www/
+mkdir html
+cd html
+echo "salut" >> index.html
 rc-service nginx start
 
 sleep 5

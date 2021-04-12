@@ -4,10 +4,10 @@ server {
 
 	# SSL configuration
 
-	listen 443 ssl default_server;
-	listen [::]:443 ssl default_server;
-	ssl_certificate /srcs/RootCA.pem;
-	ssl_certificate_key /srcs/RootCA.key;
+	# listen 443 ssl default_server;
+	# listen [::]:443 ssl default_server;
+	# ssl_certificate /srcs/RootCA.pem;
+	# ssl_certificate_key /srcs/RootCA.key;
 
 	root /var/www/html;
 
@@ -26,7 +26,8 @@ server {
 	# pass PHP scripts to FastCGI server
 
 	location ~ \.php$ {
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+		fastcgi_pass	127.0.0.1:9000;
+		fastcgi_index	index.php;
+		include			fastcgi.conf;
 	}
 }
