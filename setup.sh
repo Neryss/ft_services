@@ -18,6 +18,12 @@ run_wordpress()
 	Kubectl apply -f ./srcs/wordpress/srcs/wordpress.yaml
 }
 
+run_mariadb()
+{
+	docker build ./srcs/mysql --rm -t my-mysql
+	kubectl apply -f ./srcs/mysql/srcs/mysql.yaml
+}
+
 run_minikube()
 {
 	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
@@ -32,6 +38,8 @@ echo "Setting up metallb..."
 run_metallb
 echo "Setting up nginx..."
 run_nginx
+echo "Setting up mariadb..."
+run_mariadb
 echo "Setting up wordpress..."
 run_wordpress
 echo "Minikube ip is the following :\n"
