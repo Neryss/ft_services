@@ -9,7 +9,7 @@ server {
 	# ssl_certificate /srcs/RootCA.pem;
 	# ssl_certificate_key /srcs/RootCA.key;
 
-	root /var/www/html;
+	root /var/www/html/wordpress;
 
 	# Add index.php to the list if you are using PHP
 	autoindex off;

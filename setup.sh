@@ -9,7 +9,7 @@ run_metallb()
 run_nginx()
 {
 	docker build ./srcs/nginx/ --rm -t my-nginx
-	# Kubectl apply -f ./srcs/nginx/srcs/nginx.yaml
+	Kubectl apply -f ./srcs/nginx/srcs/nginx.yaml
 }
 
 run_wordpress()

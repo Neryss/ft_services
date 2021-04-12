@@ -1,8 +1,10 @@
 cp default /etc/nginx/conf.d/default.conf
-cp wordpress-5.7.zip /var/www/html/
-cd /var/www/html
+cd /var/www
+mkdir html
+cp /srcs/wordpress-5.7.zip html/
+cd html
 unzip wordpress-5.7.zip > /dev/null
-cp /srcs/wp-config.php ./wordpress/
+cp /srcs/wp-config.php wordpress/
 rm -rf wordpress-5.7.zip
 rc-service php-fpm7 start
 rc-service nginx start

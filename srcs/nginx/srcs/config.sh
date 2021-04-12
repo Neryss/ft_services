@@ -2,7 +2,7 @@ cp default /etc/nginx/conf.d/default.conf
 cd /var/www/
 mkdir html
 cd html
-echo "salut" >> index.html
+cp /srcs/index.html ./
 rc-service nginx start
 
 sleep 5
