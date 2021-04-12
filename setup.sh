@@ -3,13 +3,13 @@ run_metallb()
 	Kubectl apply -f ./srcs/metallb/namespace.yaml
 	Kubectl apply -f ./srcs/metallb/metallb.yaml
 	Kubectl apply -f ./srcs/metallb/config.yaml
+	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 }
 
 run_nginx()
 {
 	docker build ./srcs/nginx/ --rm -t my-nginx
 	Kubectl apply -f ./srcs/nginx/srcs/nginx.yaml
-	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 }
 
 run_wordpress()
@@ -20,8 +20,8 @@ run_wordpress()
 
 run_minikube()
 {
-	minikube delete --all
 	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
+	minikube addons enable metrics-server
 }
 
 echo "Starting services"

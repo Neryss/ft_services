@@ -12,7 +12,8 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: nginx:latest
+      - image: my-nginx:latest
+        imagePullPolicy: Never
         name: nginx
         ports:
         - name: http
