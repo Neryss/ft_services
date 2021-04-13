@@ -1,16 +1,16 @@
 cp default /etc/nginx/conf.d/default.conf
-rc-service php-fpm7 start
-rc-service nginx start
 cd /var/www/
 mkdir html
 cd html
 mkdir phpMyAdmin
-tar -xvf /srcs/phpMyAdmin-4.9.7-all-languages.tar.gz ./ > /dev/null/
+tar -xvf /srcs/phpMyAdmin-4.9.7-all-languages.tar.gz > /dev/null
 mv phpMyAdmin-4.9.7-all-languages/* phpMyAdmin
 rm -rf phpMyAdmin-4.9.7-all-languages.tar.gz
 rm -rf phpMyAdmin-4.9.7-all-languages
 cd phpMyAdmin
-cp /srcs/wp-config.inc.php ./
+cp /srcs/wp-config.php ./
+rc-service php-fpm7 start
+rc-service nginx start
 
 sleep 5
 

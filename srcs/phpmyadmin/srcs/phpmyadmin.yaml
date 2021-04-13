@@ -1,45 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-phpmyadmin-deployment
-  labels:
-    app: my-phpmyadmin
+  name: phpmyadmin
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: my-phpmyadmin
+      app: phpmyadmin
   template:
     metadata:
       labels:
-        app: my-phpmyadmin
+        app: phpmyadmin
     spec:
       containers:
-        - name: my-phpmyadmin
-          image: my-phpmyadmin:latest
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 5000
-          env:
-            - name: PMA_HOST
-              value: mysql-service
-            - name: PMA_PORT
-              value: "3306"
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secrets
-                  key: root-password
+      - image: my-phpmyadmin:latest
+        imagePullPolicy: Never
+        name: phpmyadmin
+        ports:
+        - name: http
+          containerPort: 5000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-phpmyadmin
+  name: phpmyadmin
 spec:
-  type: LoadBalancer
-  selector:
-    app: my-phpmyadmin
   ports:
-  - protocol: TCP
+  - name: http
     port: 5000
+    protocol: TCP
     targetPort: 5000
+    nodePort: 5000
+  selector:
+    app: phpmyadmin
+  type: LoadBalancer
