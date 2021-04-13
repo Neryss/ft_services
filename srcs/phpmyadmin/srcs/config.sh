@@ -8,6 +8,7 @@ mv phpMyAdmin-4.9.7-all-languages/* phpMyAdmin
 rm -rf phpMyAdmin-4.9.7-all-languages.tar.gz
 rm -rf phpMyAdmin-4.9.7-all-languages
 cd phpMyAdmin
+cp /srcs/config.sample.inc.php ./config.inc.php
 cp /srcs/wp-config.php ./
 rc-service php-fpm7 start
 rc-service nginx start
