@@ -9,7 +9,8 @@ build_all()
 	docker build ./srcs/phpmyadmin --rm -t my-phpmyadmin
 	docker build ./srcs/mysql --rm -t my-mysql
 	docker build ./srcs/wordpress --rm -t my-wordpress
-	docker build ./srcs/nginx/ --rm -t my-nginx
+	docker build ./srcs/nginx --rm -t my-nginx
+	docker build ./srcs/grafana --rm -t my-grafana
 }
 
 deploy_all()
@@ -21,6 +22,7 @@ deploy_all()
 	Kubectl apply -f ./srcs/metallb/namespace.yaml
 	Kubectl apply -f ./srcs/metallb/metallb.yaml
 	Kubectl apply -f ./srcs/metallb/config.yaml
+	kubectl apply -f ./srcs/grafana/srcs/grafana.yaml
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 }
 

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - image: my-grafana:latest
+        imagePullPolicy: Never
+        name: grafana
+        ports:
+        - name: http
+          containerPort: 3300
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  ports:
+  - name: http
+    port: 3300
+    targetPort: 3300
+    nodePort: 3300
+    protocol: TCP
+  selector:
+    app: grafana
+  type: LoadBalancer
