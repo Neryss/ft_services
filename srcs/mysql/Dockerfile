@@ -8,7 +8,7 @@ RUN mkdir -p /run/openrc
 RUN touch /run/openrc/softlevel
 RUN rc-status 2> /dev/null
 
-ADD ./srcs ./srcs
+ADD ./srcs /srcs
 WORKDIR /srcs
 EXPOSE 3306
 ENTRYPOINT ./config.sh

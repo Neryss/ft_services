@@ -10,6 +10,8 @@ rm -rf phpMyAdmin-4.9.7-all-languages
 cd phpMyAdmin
 cp /srcs/config.sample.inc.php ./config.inc.php
 cp /srcs/wp-config.php ./
+mkdir -p tmp
+chmod 777 tmp
 rc-service php-fpm7 start
 rc-service nginx start
 
