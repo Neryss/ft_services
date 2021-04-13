@@ -24,6 +24,12 @@ run_mariadb()
 	kubectl apply -f ./srcs/mysql/srcs/mysql.yaml
 }
 
+run_phpmyadmin()
+{
+	docker build ./srcs/phpmyadmin --rm -t my-phpmyadmin
+	kubectl apply -f ./srcs/phpmyadmin/srcs/phpmyadmin.yaml
+}
+
 run_minikube()
 {
 	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
@@ -40,6 +46,8 @@ echo "Setting up nginx..."
 run_nginx
 echo "Setting up mariadb..."
 run_mariadb
+echo "Setting up phpmyadmin..."
+run_phpmyadmin
 echo "Setting up wordpress..."
 run_wordpress
 echo "Minikube ip is the following :\n"
