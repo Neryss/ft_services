@@ -1,29 +1,21 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mysql-secrets
-type: Opaque
-data:
-  root-password: c3VwZXItc2VjcmV0LXBhc3N3b3Jk
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phpmyadmin-deployment
+  name: my-phpmyadmin-deployment
   labels:
-    app: phpmyadmin
+    app: my-phpmyadmin
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: phpmyadmin
+      app: my-phpmyadmin
   template:
     metadata:
       labels:
-        app: phpmyadmin
+        app: my-phpmyadmin
     spec:
       containers:
-        - name: phpmyadmin
+        - name: my-phpmyadmin
           image: my-phpmyadmin:latest
           imagePullPolicy: Never
           ports:
@@ -42,11 +34,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: phpmyadmin-service
+  name: my-phpmyadmin
 spec:
   type: LoadBalancer
   selector:
-    app: phpmyadmin
+    app: my-phpmyadmin
   ports:
   - protocol: TCP
     port: 5000
