@@ -1,4 +1,4 @@
-/usr/bin/grafana-server --homepath=/usr/share/grafana
+/usr/sbin/grafana-server --homepath=/usr/share/grafana
 
 sleep 5
 

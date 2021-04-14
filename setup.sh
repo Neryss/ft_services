@@ -36,5 +36,5 @@ deploy_all
 echo "Done deploying..."
 echo "Minikube ip is the following :"
 minikube ip
-echo "All done !\n Starting dashboard"
+echo "All done !\nStarting dashboard"
 minikube dashboard
