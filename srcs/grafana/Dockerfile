@@ -10,5 +10,5 @@ RUN rc-status 2> /dev/null
 
 ADD ./srcs /srcs
 WORKDIR /srcs
-EXPOSE 3300
+EXPOSE 3000
 ENTRYPOINT ./config.sh
