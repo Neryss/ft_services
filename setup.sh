@@ -11,6 +11,7 @@ build_all()
 	docker build ./srcs/wordpress --rm -t my-wordpress
 	docker build ./srcs/nginx --rm -t my-nginx
 	docker build ./srcs/grafana --rm -t my-grafana
+	docker build ./srcs/influxdb --rm -t my-influxdb
 }
 
 deploy_all()
@@ -19,9 +20,10 @@ deploy_all()
 	kubectl apply -f ./srcs/mysql/srcs/mysql.yaml
 	kubectl apply -f ./srcs/wordpress/srcs/wordpress.yaml
 	kubectl apply -f ./srcs/nginx/srcs/nginx.yaml
-	Kubectl apply -f ./srcs/metallb/namespace.yaml
-	Kubectl apply -f ./srcs/metallb/metallb.yaml
-	Kubectl apply -f ./srcs/metallb/config.yaml
+	kubectl apply -f ./srcs/metallb/namespace.yaml
+	kubectl apply -f ./srcs/metallb/metallb.yaml
+	kubectl apply -f ./srcs/metallb/config.yaml
+	kubectl apply -f ./srcs/influxdb/srcs/influxdb.yaml
 	kubectl apply -f ./srcs/grafana/srcs/grafana.yaml
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 }
