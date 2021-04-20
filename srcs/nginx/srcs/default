@@ -4,10 +4,10 @@ server {
 
 	# SSL configuration
 
-	# listen 443 ssl default_server;
-	# listen [::]:443 ssl default_server;
-	# ssl_certificate /srcs/RootCA.pem;
-	# ssl_certificate_key /srcs/RootCA.key;
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
+	ssl_certificate /srcs/RootCA.pem;
+	ssl_certificate_key /srcs/RootCA.key;
 
 	root /var/www/html;
 

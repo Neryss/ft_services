@@ -31,7 +31,8 @@ echo "Starting services"
 run_minikube
 eval $(minikube docker-env)
 minikube addons enable metallb
-./metallb.sh $(minikube ip) 2> /dev/null
+./srcs/metallb.sh $(minikube ip) 2> /dev/null
+./srcs/certif-handler.sh
 minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
 build_all
 echo "Done building every image"

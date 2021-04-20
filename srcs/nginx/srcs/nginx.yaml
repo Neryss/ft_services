@@ -12,12 +12,15 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: my-nginx:latest
-        imagePullPolicy: Never
-        name: nginx
-        ports:
-        - name: http
-          containerPort: 80
+        - image: my-nginx:latest
+          imagePullPolicy: Never
+          volumeMounts:
+            - name: secret-volume
+              mountPath: /etc/secret-volume
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: ft-services-tls
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +33,10 @@ spec:
   - name: http
     port: 80
     targetPort: 80
-    nodePort: 80
+    protocol: TCP
+  - name: https
+    port: 443
+    targetPort: 443
     protocol: TCP
   selector:
     app: nginx
