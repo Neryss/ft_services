@@ -12,6 +12,7 @@ build_all()
 	docker build ./srcs/nginx --rm -t my-nginx
 	docker build ./srcs/grafana --rm -t my-grafana
 	docker build ./srcs/influxdb --rm -t my-influxdb
+	docker build ./srcs/telegraf --rm -t my-telegraf
 }
 
 deploy_all()
@@ -25,6 +26,7 @@ deploy_all()
 	kubectl apply -f ./srcs/metallb/config.yaml
 	kubectl apply -f ./srcs/influxdb/srcs/influxdb.yaml
 	kubectl apply -f ./srcs/grafana/srcs/grafana.yaml
+	kubectl apply -f ./srcs/telegraf/srcs/telegraf.yaml
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 }
 
