@@ -21,9 +21,6 @@ deploy_all()
 	kubectl apply -f ./srcs/mysql/srcs/mysql.yaml
 	kubectl apply -f ./srcs/wordpress/srcs/wordpress.yaml
 	kubectl apply -f ./srcs/nginx/srcs/nginx.yaml
-	kubectl apply -f ./srcs/metallb/namespace.yaml
-	kubectl apply -f ./srcs/metallb/metallb.yaml
-	kubectl apply -f ./srcs/metallb/config.yaml
 	kubectl apply -f ./srcs/influxdb/srcs/influxdb.yaml
 	kubectl apply -f ./srcs/grafana/srcs/grafana.yaml
 	kubectl apply -f ./srcs/telegraf/srcs/telegraf.yaml
@@ -33,6 +30,8 @@ deploy_all()
 echo "Starting services"
 run_minikube
 eval $(minikube docker-env)
+minikube addons enable metallb
+./metallb.sh $(minikube ip) 2> /dev/null
 minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
 build_all
 echo "Done building every image"
