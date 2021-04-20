@@ -8,6 +8,7 @@ RUN mkdir -p /run/openrc
 RUN touch /run/openrc/softlevel
 RUN rc-status 2> /dev/null
 
+COPY ./srcs/config.yaml /usr/share/grafana/conf/provisioning/datasources/datasources.yaml
 ADD ./srcs /srcs
 WORKDIR /srcs
 EXPOSE 3000
