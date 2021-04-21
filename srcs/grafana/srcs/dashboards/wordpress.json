@@ -15,7 +15,6 @@
 	"editable": true,
 	"gnetId": null,
 	"graphTooltip": 0,
-	"id": 1,
 	"links": [],
 	"panels": [
 	  {
@@ -23,7 +22,7 @@
 		"bars": false,
 		"dashLength": 10,
 		"dashes": false,
-		"datasource": "wordpress",
+		"datasource": "telegraf",
 		"fieldConfig": {
 		  "defaults": {
 			"unit": "percent"
@@ -104,7 +103,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "telegraf"
+				"value": "wordpress"
 			  }
 			]
 		  }
@@ -167,4 +166,4 @@
 	"title": "wordpress",
 	"uid": "AdPdt_wee",
 	"version": 1
-  }
+}

@@ -9,6 +9,11 @@ mysql -u root -e "CREATE DATABASE wordpress;"
 sed -i "s|.*skip-networking.*|#skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
 rc-service mariadb restart
 
+if [ `mysql -u root -e "use wordpress; show tables\G" | wc -l` = 0 ]
+then
+	mysql -u root wordpress < ./wordpress.sql
+fi
+
 sleep 5
 
 while [ $(/usr/bin/pgrep mysql | wc -l) -gt 0 ]; do
