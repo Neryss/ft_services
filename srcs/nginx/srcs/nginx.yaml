@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: Nginx
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - image: my-nginx:latest
-          name: my-nginx
+          name: nginx
           imagePullPolicy: Never
           volumeMounts:
             - name: secret-volume
@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: Nginx
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
 spec:
