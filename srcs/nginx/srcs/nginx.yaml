@@ -13,6 +13,7 @@ spec:
     spec:
       containers:
         - image: my-nginx:latest
+          name: my-nginx
           imagePullPolicy: Never
           volumeMounts:
             - name: secret-volume

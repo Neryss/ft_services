@@ -1,5 +1,4 @@
 cp default /etc/nginx/conf.d/default.conf
-cp telegraf.conf /etc/telegraf.conf.d/
 cd /var/www
 mkdir html
 cp /srcs/wordpress-5.7.zip html/
