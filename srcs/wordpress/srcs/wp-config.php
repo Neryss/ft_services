@@ -61,6 +61,7 @@ define( 'AUTH_SALT',        'mettez une phrase unique ici' );
 define( 'SECURE_AUTH_SALT', 'mettez une phrase unique ici' );
 define( 'LOGGED_IN_SALT',   'mettez une phrase unique ici' );
 define( 'NONCE_SALT',       'mettez une phrase unique ici' );
+define( 'CONCATENATE_SCRIPTS', false ); 
 /**#@-*/
 
 /**

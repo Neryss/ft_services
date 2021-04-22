@@ -33,7 +33,7 @@ eval $(minikube docker-env)
 ./srcs/certif-handler.sh
 minikube addons enable metallb
 ./srcs/metallb.sh $(minikube ip) 2> /dev/null
-minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
+minikube ssh "docker login -u ckurt42 -p jesuisunmotdepasse"
 build_all
 echo "Done building every image"
 deploy_all
