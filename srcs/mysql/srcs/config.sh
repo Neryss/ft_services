@@ -5,7 +5,6 @@ mysql -u root -e "CREATE USER '${MYSQL_ROOT_USERNAME}'@'%' IDENTIFIED BY '${MYSQ
 mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO '${MYSQL_ROOT_PASSWORD}'@'%';"
 mysql -u root -e "FLUSH PRIVILEGES;"
 mysql -u root -e "CREATE DATABASE wordpress;"
-
 sed -i "s|.*skip-networking.*|#skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
 rc-service mariadb restart
 
