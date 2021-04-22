@@ -1,6 +1,6 @@
 run_minikube()
 {
-	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
+	minikube start --vm-driver=virtualbox
 	minikube addons enable metrics-server
 }
 
@@ -26,7 +26,6 @@ deploy_all()
 	kubectl apply -f ./srcs/grafana/srcs/grafana.yaml
 	kubectl apply -f ./srcs/telegraf/srcs/telegraf.yaml
 	kubectl apply -f ./srcs/ftps/srcs/ftps.yaml
-	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 }
 
 echo "Starting services"

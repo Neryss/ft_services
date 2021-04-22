@@ -12,5 +12,5 @@ RUN rc-status 2> /dev/null
 
 ADD ./srcs ./srcs
 WORKDIR /srcs
-EXPOSE 5000 443
+EXPOSE 5000
 ENTRYPOINT ./config.sh
