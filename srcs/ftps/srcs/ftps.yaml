@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftps
+  labels:
+    app: ftps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ftps
+  template:
+    metadata:
+      labels:
+        app: ftps
+    spec:
+      containers:
+        - name: ftps
+          image: my-ftps:latest
+          imagePullPolicy: Never
+          volumeMounts:
+            - name: secret-volume
+              mountPath: /etc/secret-volume
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: ft-services-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ftps
+  annotations:
+    metallb.universe.tf/allow-shared-ip: shared
+spec:
+  type: LoadBalancer
+  selector:
+    app: ftps
+  ports:
+    - name: ftps
+      protocol: TCP
+      port: 21
+      targetPort: 21
+    - name: ftp30020
+      protocol: TCP
+      port: 30020
+      targetPort: 30020
+    - name: ftp30021
+      protocol: TCP
+      port: 30021
+      targetPort: 30021

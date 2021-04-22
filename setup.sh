@@ -13,6 +13,7 @@ build_all()
 	docker build ./srcs/grafana --rm -t my-grafana
 	docker build ./srcs/influxdb --rm -t my-influxdb
 	docker build ./srcs/telegraf --rm -t my-telegraf
+	docker build ./srcs/ftps --rm -t my-ftps
 }
 
 deploy_all()
@@ -24,6 +25,7 @@ deploy_all()
 	kubectl apply -f ./srcs/influxdb/srcs/influxdb.yaml
 	kubectl apply -f ./srcs/grafana/srcs/grafana.yaml
 	kubectl apply -f ./srcs/telegraf/srcs/telegraf.yaml
+	kubectl apply -f ./srcs/ftps/srcs/ftps.yaml
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 }
 
@@ -33,6 +35,7 @@ eval $(minikube docker-env)
 ./srcs/certif-handler.sh
 minikube addons enable metallb
 ./srcs/metallb.sh $(minikube ip) 2> /dev/null
+minikube ip > ./srcs/ftps/ip.txt
 minikube ssh "docker login -u ckurt42 -p jesuisunmotdepasse"
 build_all
 echo "Done building every image"
