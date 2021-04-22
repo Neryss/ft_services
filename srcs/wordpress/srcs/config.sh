@@ -1,14 +1,12 @@
 cp default /etc/nginx/conf.d/default.conf
 cd /var/www
 mkdir html
-cp /srcs/wordpress-5.7.zip html/
+cp /srcs/wordpress-5.7.1.tar.gz html/
 cd html
-unzip wordpress-5.7.zip > /dev/null
+tar -xf wordpress-5.7.1.tar.gz
 cp /srcs/wp-config.php wordpress/
-rm -rf wordpress-5.7.zip
 rc-service php-fpm7 start
 rc-service nginx start
-rc-service telegraf start
 
 sleep 5
 

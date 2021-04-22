@@ -31,7 +31,6 @@ spec:
     port: 5050
     protocol: TCP
     targetPort: 5050
-    nodePort: 5050
   selector:
     app: wordpress
   type: LoadBalancer

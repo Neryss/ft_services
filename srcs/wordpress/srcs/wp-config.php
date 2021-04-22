@@ -42,6 +42,9 @@ define( 'DB_CHARSET', 'utf8' );
  */
 define( 'DB_COLLATE', '' );
 
+define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
+define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
+
 /**#@+
  * Clés uniques d’authentification et salage.
  *
@@ -61,7 +64,6 @@ define( 'AUTH_SALT',        'mettez une phrase unique ici' );
 define( 'SECURE_AUTH_SALT', 'mettez une phrase unique ici' );
 define( 'LOGGED_IN_SALT',   'mettez une phrase unique ici' );
 define( 'NONCE_SALT',       'mettez une phrase unique ici' );
-define( 'CONCATENATE_SCRIPTS', false ); 
 /**#@-*/
 
 /**
